@@ -34,41 +34,43 @@ The maximum possible groupings of adjacent ones are already shown in the figure.
 
 **Procedure**
 
-/* write all the steps invloved */
+1.Type the program in Quartus software.  
+2.Compile and run the program    
+3.Generate the RTL schematic and logic diagram.   
+4.Create nodes for inputs and outputs to generate the timing diagram.  
+5.For different input combinations generate the timing diagram.   
 
 **PROGRAM**
 
-/* Program for flipflops and verify its truth table in quartus using Verilog programming. Developed by: RegisterNumber:
-*/
+/* Program for flipflops and verify its truth table in quartus using Verilog programming.  
+Developed by:  HARINI S  
+RegisterNumber: 212223240048 */
 ```
-module EXP6(q, q_bar, s, r, clk, reset);
-  input s, r, clk, reset;
-  output reg q;
-  output q_bar;
-
-  always @(posedge clk) begin
-    if (!reset) 
-      q <= 0;
-    else begin
-      case ({s, r})
-		  2'b00: q <= q;
-        2'b01: q <= 1'b0;
-        2'b10: q <= 1'b1;
-        2'b11: q <= 1'bx;
-        default: q <= q;
-      endcase
-    end
-  end
-
-  assign q_bar = ~q;
+module exp6(s,r,clk,q,qbar);
+input s,r,clk;
+output reg q;
+output reg qbar;
+initial 
+begin
+q=0;
+qbar=1;
+end
+always @(posedge clk)
+begin
+   q=s|(~r&q);
+   qbar=r|(~s&~q);
+end
 endmodule
 ```
 **RTL LOGIC FOR FLIPFLOPS**
-![Screenshot 2024-10-06 225922](https://github.com/user-attachments/assets/45998da6-193d-4eca-909f-cdf75fdd1185)
+
+![Screenshot 2024-11-12 112243](https://github.com/user-attachments/assets/ab9ba547-0062-45c8-92f6-62e22fa79a10)
+
 
 **TIMING DIGRAMS FOR FLIP FLOPS**
-![Screenshot 2024-10-06 231614](https://github.com/user-attachments/assets/1bcec983-d4d7-47cf-9cae-35ca885c9d23)
+![Screenshot 2024-11-12 112311](https://github.com/user-attachments/assets/4f73373f-7c2a-4fa3-9a9e-f1402e638778)
 
 
-**RESULTS**
-IT HAS BEEN VERIFIED
+**RESULTS**   
+  
+Thus the program to implement a SR flipflop using verilog and validating their functionality using their functional tables is successfully completed.
